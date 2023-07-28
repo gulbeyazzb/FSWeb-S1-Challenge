@@ -225,8 +225,19 @@ Aşağıdakileri yapmak için fenomenEkle'i kullanın:
 
 function fenomenEkle(dizi, number, profile, followers, posts, platform) {
   const dizi1 = dizi;
+  const nesne = {
+    number: number,
+    profile: profile,
+    followers: followers,
+    posts: posts,
+    platform: platform,
+  };
+  dizi1.push(nesne);
+  return dizi1;
 }
-
+// console.log(
+//   fenomenEkle(fenomenler, 6, "workintech", 10000000, 2022, "Instagram")
+// );
 /* Görev 7:
 Aşağıdakileri yapmak için enFenomenler'yi kullanın:
 1. ilk parametre olarak fenomenler dizisini alın
@@ -235,10 +246,16 @@ Aşağıdakileri yapmak için enFenomenler'yi kullanın:
 ÖRNEK: enFenomenler(fenomenler) çağrıldığında sonuç olarak ["Instagram", "Cristiano Ronaldo", ... "Khabane lame"] dönemelidir
 */
 
-function enFenomenler(/*kod*/) {
-  /*kod*/
+function enFenomenler(dizi) {
+  let a = [];
+  for (let i = 0; i < dizi.length; i++) {
+    if (dizi[i].followers > 100000000) {
+      a.push(dizi[i].profile);
+    }
+  }
+  return a;
 }
-
+//console.log(enFenomenler(fenomenler));
 /* Görev 8:
 Aşağıdakileri yapmak için fenomenGonderimSayisi'nı kullanın:
 1. ilk parametre olarak fenomenler dizisini alın
@@ -248,10 +265,14 @@ Aşağıdakileri yapmak için fenomenGonderimSayisi'nı kullanın:
 ÖRNEK: fenomenGonderimSayisi(fenomenler, 'Will Smith') çağrıldığında "136" dönmelidir
 */
 
-function fenomenGonderimSayisi(/*kod*/) {
-  /*kod*/
+function fenomenGonderimSayisi(dizi, profile) {
+  for (let i = 0; i < dizi.length; i++) {
+    if (dizi[i].profile == profile) {
+      return dizi[i].posts;
+    }
+  }
 }
-
+//console.log(fenomenGonderimSayisi(fenomenler, "Will Smith"));
 /* Görev 9:
 Aşağıdakileri yapmak için platformaGoreCokGonderiYapanFenomen'ni kullanın:
 1. ilk parametre olarak fenomenler dizisini alın
@@ -263,10 +284,28 @@ Not: Gönderi sayısı belli olmayan (NA) hesaba katmayın.
 Örnek: platformaGoreCokGonderiYapanFenomen(fenomenler, 'TikTok') çağrıldığında "charli damelio" dönmelidir
 */
 
-function platformaGoreCokGonderiYapanFenomen(/*kod*/) {
-  /*kod*/
-}
+function platformaGoreCokGonderiYapanFenomen(dizi, platform) {
+  let dizi1 = [];
 
+  for (let i = 0; i < dizi.length; i++) {
+    if (dizi[i].posts != "NA") {
+      for (let x = 0; x < dizi.length; x++) {
+        if (dizi[x].platform == platform) {
+          dizi1.push(dizi[x]);
+        }
+      }
+
+      for (let y = 0; y < dizi1.length; y++) {
+        let enPostAtan = dizi1[0];
+        if (dizi1[y].posts > enPostAtan.posts) {
+          enPostAtan = dizi1[y].posts;
+        }
+        return enPostAtan.profile;
+      }
+    }
+  }
+}
+console.log(platformaGoreCokGonderiYapanFenomen(fenomenler, "TikTok"));
 /* ***** GÖREVLERİN SONU ***** */
 
 /*Bu satırdan sonra koda dokunmayın! */

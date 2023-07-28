@@ -283,29 +283,47 @@ Not: Gönderi sayısı belli olmayan (NA) hesaba katmayın.
 
 Örnek: platformaGoreCokGonderiYapanFenomen(fenomenler, 'TikTok') çağrıldığında "charli damelio" dönmelidir
 */
-
 function platformaGoreCokGonderiYapanFenomen(dizi, platform) {
-  let dizi1 = [];
+  let enPostAtan = null;
 
   for (let i = 0; i < dizi.length; i++) {
-    if (dizi[i].posts != "NA") {
-      for (let x = 0; x < dizi.length; x++) {
-        if (dizi[x].platform == platform) {
-          dizi1.push(dizi[x]);
-        }
-      }
-
-      for (let y = 0; y < dizi1.length; y++) {
-        let enPostAtan = dizi1[0];
-        if (dizi1[y].posts > enPostAtan.posts) {
-          enPostAtan = dizi1[y].posts;
-        }
-        return enPostAtan.profile;
+    if (dizi[i].platform === platform && dizi[i].posts !== "NA") {
+      if (enPostAtan === null || dizi[i].posts > enPostAtan.posts) {
+        enPostAtan = dizi[i];
       }
     }
   }
+
+  if (enPostAtan !== null) {
+    return enPostAtan.profile;
+  } else {
+    return "Belirtilen özellikte fenomen bulunamadı.";
+  }
 }
+
 console.log(platformaGoreCokGonderiYapanFenomen(fenomenler, "TikTok"));
+// function platformaGoreCokGonderiYapanFenomen(dizi, platform) {
+//   let dizi1 = [];
+
+//   for (let i = 0; i < dizi.length; i++) {
+//     if (dizi[i].posts != "NA") {
+//       for (let x = 0; x < dizi.length; x++) {
+//         if (dizi[x].platform == platform) {
+//           dizi1.push(dizi[x]);
+//         }
+//       }
+
+//       for (let y = 0; y < dizi1.length; y++) {
+//         let enPostAtan = dizi1[0];
+//         if (dizi1[y].posts > enPostAtan.posts) {
+//           enPostAtan = dizi1[y].posts;
+//         }
+//         return enPostAtan.profile;
+//       }
+//     }
+//   }
+// }
+// console.log(platformaGoreCokGonderiYapanFenomen(fenomenler, "TikTok"));
 /* ***** GÖREVLERİN SONU ***** */
 
 /*Bu satırdan sonra koda dokunmayın! */
